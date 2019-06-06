@@ -65,7 +65,6 @@ body {
 .infoList {
 	border: 1px white solid;
 	border-radius: 15px;
-	/*min-height: 10px;*/
 	color: #f6efe8;
 	margin: 1px 10%;
 	text-shadow: 2px 1px black;
@@ -132,13 +131,19 @@ a {
 	margin: 1px 35px;
 	text-align: left;
 }	
-.skillsMain{
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+.skillsMain{	
 	padding-left: 20px;
-
-	grid-gap: 1em;
+	/* display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-gap: 1em; */	
+	display: flex;
+	justify-content: space-around;
 }	
+.skillsObj{
+	/* border: 1px white solid;
+	border-radius: 15px; */
+	font-size: 130%;
+}
 .summery {
 	min-height: 100px;
 	padding-top: 5px;
