@@ -94,7 +94,7 @@ h2 {
 }	
 .image_1 {
 	width: 90%;
-	height: 20%;
+	height: 100px;
 	object-fit: contain;
 }	
 .sameLine {
@@ -137,18 +137,13 @@ a {
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	grid-gap: 1em; */	
 	display: flex;
-	justify-content: space-around;
 }	
 .skillsObj{
-	/* border: 1px white solid;
-	border-radius: 15px; */
-	font-size: 130%;
+	width: 23%;
 }
 .summery {
 	min-height: 100px;
 	padding-top: 5px;
-
-	flex:none;
 }				  
 .goals {
 	min-height: 100px;
