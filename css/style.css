@@ -2,11 +2,12 @@
 	padding-top: 15px;
 }	 
 body {
-	background-image: url('../images/bg_5.jpg');
+	/* background-image: url('../images/bg_5.jpg');
 	background-repeat: no-repeat;
 	background-origin: content-box;
 	background-size: 100% 200%;
-	background-position: 50% 50%;
+	background-position: 50% 50%; */
+	background-color: rgb(61, 61, 61);
 	color: gainsboro;
 	font-family: Georgia, sans-serif,Tohoma;
 	line-height: 1.6em;
@@ -100,9 +101,6 @@ h2 {
 .sameLine {
 	display: inline;
 }	
-.twoColums3070 {
-	padding-left: 30px;
-}	 
 a {
 	color: gainsboro;
 	text-decoration: none;
@@ -133,7 +131,14 @@ a {
 	text-shadow: 2px 1px black;
 	margin: 1px 35px;
 	text-align: left;
-}		  
+}	
+.skillsMain{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	padding-left: 20px;
+
+	grid-gap: 1em;
+}	
 .summery {
 	min-height: 100px;
 	padding-top: 5px;
@@ -144,12 +149,10 @@ a {
 	min-height: 100px;
 }			   
 .end {
-	background-image: url('../images/bg_11.jpg');
-	background-repeat: no-repeat;
-	background-origin: content-box;
-	background-position: 50% 50%;
-	background-size: 100% 100%;
-	margin: 0 60px;
+	background-color: rgba(54, 99, 196, 0.596);
+	border: 1px white solid;
+	border-radius: 15px;
+	margin: 1px 35px;
 	text-align: center;
 	font-size: 16px;
 	font-family: serif;
