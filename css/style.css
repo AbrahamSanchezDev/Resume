@@ -1,7 +1,6 @@
 #TitleName {
 	padding-top: 15px;
-}
-
+}	 
 body {
 	background-image: url('../images/bg_5.jpg');
 	background-repeat: no-repeat;
@@ -13,8 +12,7 @@ body {
 	line-height: 1.6em;
 	font-size: 13px;
 	margin: 0;
-}
-
+}		 
 .intro {
 	background-image: url('../images/bg_3.jpg');
 	background-size: cover;
@@ -61,48 +59,39 @@ body {
 	color: #f6efe8;
 	margin: 1px 10%;
 	text-shadow: 2px 1px black;
-}
-
+}	  
 	.infoList ul {
 		text-align: center;
 		list-style: none;
 	}
 .media {
 	text-align: center;
-}
-
+}	  
 	.media img {
 		width: 27px;
 		height: 27px;
-	}
-
+	}		
 #top {
 	display: inline;
-}
-
+}	 
 h2 {
 	text-align: center;
 	color: beige;
 	font-size: 13px;
-	margin-bottom;
+	/* margin-bottom; */
 	
-}
-
-
+}	  
 #selected {
 	background-image: url('../images/button_5.png');
 	padding: 20px
-}
-
+}	
 .image_1 {
 	width: 90%;
 	height: 20%;
 	object-fit: contain;
-}
-
+}	
 .sameLine {
 	display: inline;
-	float: left;
 }	
 .twoColums3070 {
 	padding-left: 30px;
@@ -110,14 +99,12 @@ h2 {
 a {
 	color: gainsboro;
 	text-decoration: none;
-}
-
+}	  
 .expArea {
 	padding: 1px 30px;
 	display: flex;
 	justify-content: space-around;
-}
-
+}	   
 .expObj {
 	border: 1px white solid;
 	border-radius: 15px;
