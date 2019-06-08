@@ -107,7 +107,27 @@ h2 {
 	width: 90%;
 	height: 100px;
 	object-fit: contain;
+	 animation: fadeIn 2s; 
+
 }	
+@keyframes fadeIn{
+	from{
+		opacity: 0;
+		width: 25%;
+	}
+	to{
+ 		opacity: 1; 
+		width: 100%;
+	}
+}
+@keyframes fadeInText{
+	from{
+		opacity: 0;
+	}
+	to{
+ 		opacity: 1; 
+	}
+}
 .sameLine {
 	display: inline;
 }	
@@ -121,6 +141,7 @@ a {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
+
 }	   
 .expObj {
 	color: gainsboro;
@@ -128,6 +149,9 @@ a {
 	padding-top: 5px;
 	text-align: center;
 }	
+.expText{
+	animation: fadeInText 4s; 
+}
 hr{
 	border: 2px dotted rgba(175, 175, 175, 0.534);
 }
@@ -139,15 +163,18 @@ hr{
 	background-size: 100% 100%; 
 	text-shadow: 2px 1px black;
 	text-align: left;
-	padding-top:30px;
-	
+	padding-top:30px;		
 }	
+.skillsObj{
+	animation: fadeInText 3s; 
+}
 .skillsMain{	
 	padding-left: 20px;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: flex-start;
 	justify-content: space-around;
+	animation: fadeIn 1s; 
 }
 .summery {
 	min-height: 100px;
