@@ -189,3 +189,34 @@ hr{
 	font-size: 16px;
 	font-family: serif;
 }	   
+
+.GridObj{
+	padding: 10px 10px;
+	display: flex;
+	flex-wrap: wrap;
+
+	align-items:center;
+	justify-content: center;
+	flex-basis: 10%;
+	margin: auto;
+	width: 50%;
+	border: 1px dotted rgb(99, 99, 99);
+	padding: 2px;
+	padding-bottom: 30px;
+}
+
+.projectsPage{
+	background-image: url('../images/bg_7_3.png');
+	background-repeat: no-repeat;
+	background-origin: content-box;
+	background-position: 0 50%;
+	background-size: 100% 100%; 
+	text-shadow: 2px 1px black;
+	/* text-align: left; */
+
+	margin: 1px 50px;
+ 
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;		
+}	
