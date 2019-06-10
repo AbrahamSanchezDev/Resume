@@ -31,27 +31,32 @@
 		</p>
 	</div>
 	<div class="projectsPage">
+		<input type="file" accept="image/*" name="image" id="file" multiple=true>
+		<div class="output">
 
-		<div>
-			<input type="file" accept="image/*" name="image" id="file" multiple=true>
-			<div class="output">
-
-			</div>
 		</div>
+	</div>
+	<div class="projectsPage">
 		<div>
 			Grid X (width):
-			<input type="number" id="x" alt="setX" name="X Value" min="2" max="10" value="2">
+			<input type="number" id="x" alt="setX" name="X Value" min="2" max="10" value="2" step="2">
 			<br>
 			Grid Y (height):
-			<input type="number" id="y" alt="setY" name="Y Value" min="2" max="10" value="2">
+			<input type="number" id="y" alt="setY" name="Y Value" min="2" max="10" value="2" step="2">
 			<br>
 			<button name="Add Image" id="addImg">Create Grid</button>
 			<br>
-			<hr>
-			<div class="GridContainer">
-				<div class="GridObj" id="images"></div>
-			</div>
 		</div>
+		<br>
+		<div>
+
+			<button id="StartGame">Start Game</button>
+		</div>
+		<hr>
+
+	</div>
+	<div class="GridContainer">
+		<div class="GridObj" id="images"></div>
 	</div>
 	<script src="projects.js">
 

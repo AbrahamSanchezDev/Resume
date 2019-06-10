@@ -193,16 +193,27 @@ hr{
 .GridObj{
 	padding: 10px 10px;
 	display: flex;
-	flex-wrap: wrap;
+	flex-wrap: wrap-reverse;
 
 	align-items:center;
-	justify-content: center;
+	justify-content: flex-start;
 	flex-basis: 10%;
 	margin: auto;
 	width: 50%;
+	 border: 1px dotted rgb(99, 99, 99);
+}
+.GridObj img{
+ cursor: pointer;
+}
+
+.output{
+	display: flex;
+	flex-wrap: wrap;
+	width: 50%;
+	margin: auto;
 	border: 1px dotted rgb(99, 99, 99);
-	padding: 2px;
-	padding-bottom: 30px;
+	align-items:center;
+	justify-content: flex-start;
 }
 
 .projectsPage{
@@ -212,8 +223,6 @@ hr{
 	background-position: 0 50%;
 	background-size: 100% 100%; 
 	text-shadow: 2px 1px black;
-	/* text-align: left; */
-
 	margin: 1px 50px;
  
 	padding-top: 10px;
