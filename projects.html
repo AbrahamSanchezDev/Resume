@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
 
 <head>
 	<title>WorldsDev Projects</title>
@@ -37,24 +37,29 @@
 		</div>
 	</div>
 	<div class="projectsPage">
-		<div>
-			Grid X (width):
-			<input type="number" id="x" alt="setX" name="X Value" min="2" max="10" value="2" step="2">
-			<br>
-			Grid Y (height):
-			<input type="number" id="y" alt="setY" name="Y Value" min="2" max="10" value="2" step="2">
-			<br>
-			<button name="Add Image" id="addImg">Create Grid</button>
-			<br>
-		</div>
-		<br>
-		<div>
 
-			<button id="StartGame">Start Game</button>
+		<div>
+			Select Images to use ,select the level of difficulty ,
+			<br>the Start Game Button will be display when you have images to use;
 		</div>
+
+		<hr>
+		<div class="inputArea">
+			Difficulty :
+			<button id="lowerLevel" style="width: 30px;height: 30px">-</button>
+
+			<label id="curLevel">2</label>
+
+			<button id="increaseLevel" style="width: 30px;height: 30px">+</button>
+
+		</div>
+		<button id="StartGame">Start Game</button>
 		<hr>
 
+
+		<label id="wonText" style="font-size: 30px">Congratulations you won!!!</label>
 	</div>
+
 	<div class="GridContainer">
 		<div class="GridObj" id="images"></div>
 	</div>

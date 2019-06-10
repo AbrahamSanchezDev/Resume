@@ -194,7 +194,6 @@ hr{
 	padding: 10px 10px;
 	display: flex;
 	flex-wrap: wrap-reverse;
-
 	align-items:center;
 	justify-content: flex-start;
 	flex-basis: 10%;
@@ -223,9 +222,28 @@ hr{
 	background-position: 0 50%;
 	background-size: 100% 100%; 
 	text-shadow: 2px 1px black;
-	margin: 1px 50px;
- 
-	padding-top: 10px;
-	padding-bottom: 10px;
-	text-align: center;		
+	
+	padding-top: 7px;
+	text-align: center;	
+
 }	
+
+.inputArea{
+	justify-content: center;
+	padding-bottom: 10px;	
+}
+#StartGame{
+
+	background-color: rgb(54, 54, 54);
+	color: antiquewhite;
+	height: 30px;
+	margin : auto;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	font-size: 20px;
+
+}
+#curLevel{
+	padding: 5px 10px;
+	border: 2px solid rgba(180, 180, 180, 0.712);
+}

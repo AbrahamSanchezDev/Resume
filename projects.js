@@ -1,41 +1,43 @@
-
-
 const file = document.querySelector("#file");
 const imageContainer = document.querySelector(".output");
 const container = document.querySelector("#images");
-const addImageBut = document.querySelector("#addImg");
 const startGame = document.querySelector("#StartGame");
+const lowerLevel = document.querySelector("#lowerLevel");
+const increaseLevel = document.querySelector("#increaseLevel");
+const curLevelLabel = document.querySelector("#curLevel");
+const wonText = document.querySelector("#wonText");
 
-const xInput = document.querySelector("#x");
-const yInput = document.querySelector("#y");
+
+
+file.addEventListener("change", OnSelected);
+startGame.addEventListener("click", StartGame)
+lowerLevel.addEventListener("click", () => { IncreaseLevel(false) });
+increaseLevel.addEventListener("click", () => { IncreaseLevel(true) });
 
 const imageWidth = 50;
+const maxLevel = 10;
 const imageWidthPix = "50px";
-file.addEventListener("change", OnSelected);
-addImageBut.addEventListener("click", CreateGrid);
-startGame.addEventListener("click", StartGame)
-
-
-
+const usedIndex = [];
 const curImages = [];
 const curInputImage = [];
 const curInputImageEvs = [];
 let selectedImgs = [-1, -1];
-
+let defaultImg = "images/back.png";
 let gameStarted = false;
 let generatedImages = [];
-const usedIndex = [];
-let defaultImg = "images/back.png";
+let curLevel = 2;
 let total;
 let wins;
 CreateGrid();
+//Called when ever you add images
 function OnSelected() {
     for (let i = 0; i < event.target.files.length; i++) {
 
         CreateNewInputImage(event.target.files[i]);
     }
+    ShowStartBut();
 }
-
+//Creates a new image and display it in the input images container
 function CreateNewInputImage(e) {
     let image = AddImageTo(imageContainer, curInputImage);
     image.style.height = imageWidthPix;
@@ -44,17 +46,36 @@ function CreateNewInputImage(e) {
     image.src = nImgData;
 
     curInputImageEvs.push(nImgData);
-    // image.style.display = "none";
-    // image.style.display = "block";
 }
+//Called to increase or decrease the difficulty
+function IncreaseLevel(more) {
+    if (more) {
+        if (curLevel < maxLevel)
+            curLevel++;
+    }
+    else {
+        if (curLevel > 2)
+            curLevel--;
+    }
+    curLevelLabel.innerHTML = curLevel;
+    CreateGrid();
+}
+//Check if the game can start if there are images added
+function ShowStartBut() {
 
+    ShowComponent(startGame, curInputImageEvs.length > 0);
+}
+//create the grid based on the level of difficulty 
 function CreateGrid() {
+    ShowStartBut();
+
+    ShowComponent(wonText, false);
     ShowCurImages(false);
-    total = xInput.value * yInput.value;
-    let totalWidth = (xInput.value * imageWidth) + 10;
-    let totalheight = (yInput.value * imageWidth) + 10;
+    total = curLevel * curLevel;
+    let totalWidth = (curLevel * imageWidth) + 10;
+
     container.style.width = totalWidth;
-    container.style.height = totalheight;
+    container.style.height = totalWidth;
     if (total <= curImages.length) {
         //show only the ones needed
         for (let i = 0; i < total; i++) {
@@ -71,12 +92,13 @@ function CreateGrid() {
         }
     }
 }
-
+//shows or hides all images on the grid
 function ShowCurImages(show) {
     curImages.forEach((img) => {
         ShowComponent(img, show);
     })
 }
+//Adds an image to the grid
 function AddImage() {
     var nImage = document.createElement("img");
     nImage.style.width = imageWidth;
@@ -85,8 +107,8 @@ function AddImage() {
     container.appendChild(nImage);
     SetImageToDefault(nImage);
     curImages.push(nImage);
-
 }
+//Adds images to the images container
 function AddImageTo(theContainer, array) {
     var nImage = document.createElement("img");
     theContainer.appendChild(nImage);
@@ -95,12 +117,11 @@ function AddImageTo(theContainer, array) {
     }
     return nImage;
 }
+//Sets the images to the default background
 function SetImageToDefault(image) {
     image.src = "images/back.png";
-    image.onclick = "OnClicked(image)";
 }
-
-
+//controls the visibility of the given component
 function ShowComponent(img, show) {
     if (show) {
         img.style.display = "block";
@@ -109,13 +130,12 @@ function ShowComponent(img, show) {
         img.style.display = "none";
     }
 }
-
+//Starts the game hiding all other inputs and generates the images positions
 function StartGame() {
 
     ShowComponent(startGame, false);
-    ShowComponent(xInput, false);
-    ShowComponent(yInput, false);
-    ShowComponent(addImageBut, false);
+    ShowComponent(lowerLevel, false);
+    ShowComponent(increaseLevel, false);
     ShowComponent(file, false);
 
     imgIndex = 0;
@@ -129,8 +149,6 @@ function StartGame() {
 
         added = 0;
         random = 0;
-        console.log(imgIndex);
-
         while (added < 2) {
             // console.log("imgs : " + imgIndex);
             random = Math.floor(Math.random() * total);
@@ -163,6 +181,7 @@ function StartGame() {
     gameStarted = true;
     wins = 0;
 }
+//Sets a listener to the image so its clickable or not
 function SetListeners(img, add) {
     if (add) {
         img.onclick = () => {
@@ -174,14 +193,14 @@ function SetListeners(img, add) {
         img.onclick = null;
     }
 }
-
+//called when an images is clicked on
 function OnClicked(index) {
     if (!gameStarted) {
-        console.log("No Game yet");
         return;
     }
     ShowImage(index);
 }
+//Shows the selected image and calculates if its a match or not
 function ShowImage(index) {
 
     if (index === selectedImgs[0] || index === selectedImgs[1]) {
@@ -206,7 +225,7 @@ function ShowImage(index) {
 
                 wins++;
                 if (wins >= (total / 2)) {
-                    console.log("TOTAL WIN!");
+                    ShowComponent(wonText, true);
                 }
             }
             else {
@@ -219,9 +238,11 @@ function ShowImage(index) {
         }, 200);
     }
 }
+//sets image src
 function SetImageSrc(img, src) {
     img.src = src;
 }
+//Sets image to the given src and sets the correct size
 function SetImgToImg(img, src) {
     img.src = src;
     img.style.height = imageWidthPix;
