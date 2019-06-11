@@ -63,7 +63,7 @@ function IncreaseLevel(more) {
 //Check if the game can start if there are images added
 function ShowStartBut() {
 
-    ShowComponent(startGame, curInputImageEvs.length > 0);
+    ShowComponent(startGame, curInputImageEvs.length > 1);
 }
 //create the grid based on the level of difficulty 
 function CreateGrid() {
