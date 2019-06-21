@@ -1,15 +1,15 @@
 import ObjectHandler from '../modules/componentsHandler.js';
-// const objHandlerBase = require("./componentsHandler");
-// import ObjectHandler from "componentsHandler.js";
-const file = document.querySelector("#file");
+
 const imageContainer = document.querySelector(".output");
-const container = document.querySelector("#images");
-const startGame = document.querySelector("#StartGame");
-const lowerLevel = document.querySelector("#lowerLevel");
-const increaseLevel = document.querySelector("#increaseLevel");
-const curLevelLabel = document.querySelector("#curLevel");
-const wonText = document.querySelector("#wonText");
-const presets = document.querySelector("#presets");
+
+const file = document.getElementById("fileSelector");
+const container = document.getElementById("images");
+const startGame = document.getElementById("StartGame");
+const lowerLevel = document.getElementById("lowerLevel");
+const increaseLevel = document.getElementById("increaseLevel");
+const curLevelLabel = document.getElementById("curLevel");
+const wonText = document.getElementById("wonText");
+const presets = document.getElementById("presets");
 
 file.addEventListener("change", OnSelected);
 startGame.addEventListener("click", StartGame)
