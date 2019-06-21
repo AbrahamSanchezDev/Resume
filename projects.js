@@ -1,3 +1,6 @@
+//import ObjectHandler from '../classes/componentsHandler';
+// const objHandlerBase = require("../classes/componentsHandler");
+// import ObjectHandler from "./componentsHandler";
 const file = document.querySelector("#file");
 const imageContainer = document.querySelector(".output");
 const container = document.querySelector("#images");
@@ -8,6 +11,13 @@ const curLevelLabel = document.querySelector("#curLevel");
 const wonText = document.querySelector("#wonText");
 
 
+
+
+
+
+function onClickImageHandler(index) {
+    console.log(index);
+}
 
 file.addEventListener("change", OnSelected);
 startGame.addEventListener("click", StartGame)
@@ -21,13 +31,28 @@ const usedIndex = [];
 const curImages = [];
 const curInputImage = [];
 const curInputImageEvs = [];
+const curUsedImages = [];
 let selectedImgs = [-1, -1];
-let defaultImg = "images/back.png";
+let defaultImg = "../images/back.png";
 let gameStarted = false;
 let generatedImages = [];
 let curLevel = 2;
 let total;
 let wins;
+
+// var imagesHandler = new ObjectHandler(onClickImageHandler, defaultImg, container, imageWidth, "img");
+// var animas = [];
+
+// function AddAnimals(amount) {
+//     for (let i = 0; i < amount; i++) {
+//         animas.push("../images/presets/animals/animal_" + i + ".jpg");
+//     }
+// }
+// AddAnimals(10);
+
+// imagesHandler.ShowAllSrc(animas);
+// imagesHandler.SetAllListeners(true);
+
 CreateGrid();
 //Called when ever you add images
 function OnSelected() {
@@ -36,6 +61,7 @@ function OnSelected() {
         CreateNewInputImage(event.target.files[i]);
     }
     ShowStartBut();
+    curUsedImages = curInputImageEvs;
 }
 //Creates a new image and display it in the input images container
 function CreateNewInputImage(e) {
@@ -63,7 +89,7 @@ function IncreaseLevel(more) {
 //Check if the game can start if there are images added
 function ShowStartBut() {
 
-    ShowComponent(startGame, curInputImageEvs.length > 1);
+    ShowComponent(startGame, curUsedImages.length > 1);
 }
 //create the grid based on the level of difficulty 
 function CreateGrid() {
@@ -117,9 +143,10 @@ function AddImageTo(theContainer, array) {
     }
     return nImage;
 }
+
 //Sets the images to the default background
 function SetImageToDefault(image) {
-    image.src = "images/back.png";
+    image.src = defaultImg;
 }
 //controls the visibility of the given component
 function ShowComponent(img, show) {
@@ -154,7 +181,7 @@ function StartGame() {
             random = Math.floor(Math.random() * total);
             if (usedIndex.includes(random) == false) {
                 usedIndex.push(random);
-                generatedImages[random] = curInputImageEvs[imgIndex];
+                generatedImages[random] = curUsedImages[imgIndex];
                 added++;
                 curTotal++;
                 if (added >= 2) {
@@ -168,7 +195,7 @@ function StartGame() {
         }
         imgIndex++;
 
-        if (imgIndex >= curInputImageEvs.length) {
+        if (imgIndex >= curUsedImages.length) {
             imgIndex = 0;
         }
         if (curTotal >= total) {
