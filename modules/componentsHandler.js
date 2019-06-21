@@ -9,8 +9,7 @@ export default class ObjectHandler {
     //Needs to be a function that takes a index
     onClick = () => { };
 
-    constructor(onClick, defaultSrc, container, imageWidth, objType) {
-        this.onClick = onClick;
+    constructor(defaultSrc, container, imageWidth, objType) {
         this.defaultSrc = defaultSrc;
         this.container = container;
         this.imageWidth = imageWidth;
@@ -70,7 +69,10 @@ export default class ObjectHandler {
         if (add) {
             img.onclick = () => {
                 const index = this.curImages.findIndex(im => im === img);
-                this.onClick(index);
+                if (onClick != null) {
+                    this.onClick(index);
+                }
+
             };
         }
         else {
