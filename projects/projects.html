@@ -5,7 +5,7 @@
 </head>
 
 <body>
-	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<link href="../css/style.css" rel="stylesheet" type="text/css" />
 	<div class="intro">
 
 		<h1 id="TitleName">Abraham Sanchez</h1>
@@ -13,7 +13,7 @@
 		<p>Unity 3d ,C# Developer & Video Games Fan</p>
 
 		<ul class="navBar">
-			<li><a href="index.html" class="selectedButton">Resume</a></li>
+			<li><a href="../index.html" class="selectedButton">Resume</a></li>
 			<li id="selected"><a href="projects.html">Projects</a></li>
 		</ul>
 	</div>
@@ -31,10 +31,17 @@
 		</p>
 	</div>
 	<div class="projectsPage">
+		<div id="presets">
+
+		</div>
+		<br>
 		<input type="file" accept="image/*" name="image" id="file" multiple=true>
+		<hr>
+		<br>
 		<div class="output">
 
 		</div>
+		<hr>
 	</div>
 	<div class="projectsPage">
 
@@ -48,25 +55,21 @@
 			Difficulty :
 			<button id="lowerLevel" style="width: 30px;height: 30px">-</button>
 
-			<label id="curLevel">2</label>
+			<label id="curLevel">4</label>
 
 			<button id="increaseLevel" style="width: 30px;height: 30px">+</button>
 
 		</div>
 		<button id="StartGame">Start Game</button>
 		<hr>
-
-
 		<label id="wonText" style="font-size: 30px">Congratulations you won!!!</label>
 	</div>
-
 	<div class="GridContainer">
 		<div class="GridObj" id="images"></div>
 	</div>
-	<script src="projects.js">
-
+	<script type="module" src="../modules/componentsHandler.js"></script>
+	<script type="module" src="projects.js">
 	</script>
-
 </body>
 
 </html>

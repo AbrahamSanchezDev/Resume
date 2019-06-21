@@ -12,7 +12,6 @@
 // const exp3En = "Blood of Magic a turn based fantasy game launched in 2015 \n" +
 //     "My personal rolls were 3d modeling mainly \n" +
 //     "and helping coding some parts of the game."
-
 function replaceText(nText) {
     let theText = nText;
     while (theText.includes("\n")) {

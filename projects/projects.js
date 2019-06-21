@@ -1,3 +1,6 @@
+import ObjectHandler from '../modules/componentsHandler.js';
+// const objHandlerBase = require("./componentsHandler");
+// import ObjectHandler from "componentsHandler.js";
 const file = document.querySelector("#file");
 const imageContainer = document.querySelector(".output");
 const container = document.querySelector("#images");
@@ -6,8 +9,7 @@ const lowerLevel = document.querySelector("#lowerLevel");
 const increaseLevel = document.querySelector("#increaseLevel");
 const curLevelLabel = document.querySelector("#curLevel");
 const wonText = document.querySelector("#wonText");
-
-
+const presets = document.querySelector("#presets");
 
 file.addEventListener("change", OnSelected);
 startGame.addEventListener("click", StartGame)
@@ -19,15 +21,71 @@ const maxLevel = 10;
 const imageWidthPix = "50px";
 const usedIndex = [];
 const curImages = [];
-const curInputImage = [];
 const curInputImageEvs = [];
+let curUsedImages = [];
 let selectedImgs = [-1, -1];
-let defaultImg = "images/back.png";
+const defaultImg = "../images/back.png";
+const fileImg = "../images/fileIcon.png";
 let gameStarted = false;
 let generatedImages = [];
-let curLevel = 2;
+let curLevel = 4;
 let total;
 let wins;
+
+const imagesHandler = new ObjectHandler(defaultImg, imageContainer, imageWidth, "img");
+const animas = [];
+const food = []
+const monsters = []
+
+//loads preset images from the presets folder
+function BuildArrayOfPresets(path, theArray, amount) {
+    for (let i = 0; i < amount; i++) {
+        theArray.push("../images/presets/" + path + i + ".jpg");
+    }
+}
+//Load the preset images
+BuildArrayOfPresets("animals/animal_", animas, 10);
+BuildArrayOfPresets("monsters/monster_", monsters, 10);
+BuildArrayOfPresets("plants/food_", food, 10);
+
+//Adds the Buttons to load
+AddButToPresets(fileImg, 0);
+AddButToPresets(animas[0], 1);
+AddButToPresets(monsters[0], 2);
+AddButToPresets(food[0], 3);
+
+//Add the preset buttons
+function AddButToPresets(src, index) {
+    const nImage = AddObjTo("img", imageWidth, src, presets)
+    nImage.onclick = () => {
+        OnSelectPreset(index);
+    };
+    presets.appendChild(nImage);
+}
+//Called when select preset image
+function OnSelectPreset(index) {
+
+    if (gameStarted) {
+        return;
+    }
+    switch (index) {
+        case 0:
+            curUsedImages = curInputImageEvs;
+            break;
+        case 1:
+            curUsedImages = animas;
+            break;
+        case 2:
+            curUsedImages = monsters;
+            break;
+        case 3:
+            curUsedImages = food;
+            break;
+
+    }
+    CheckIfStart();
+}
+
 CreateGrid();
 //Called when ever you add images
 function OnSelected() {
@@ -35,16 +93,17 @@ function OnSelected() {
 
         CreateNewInputImage(event.target.files[i]);
     }
+    curUsedImages = curInputImageEvs;
+    CheckIfStart();
+}
+function CheckIfStart() {
+
+    imagesHandler.ShowAllSrc(curUsedImages);
     ShowStartBut();
 }
 //Creates a new image and display it in the input images container
 function CreateNewInputImage(e) {
-    let image = AddImageTo(imageContainer, curInputImage);
-    image.style.height = imageWidthPix;
-    image.style.width = imageWidthPix;
     var nImgData = URL.createObjectURL(e);
-    image.src = nImgData;
-
     curInputImageEvs.push(nImgData);
 }
 //Called to increase or decrease the difficulty
@@ -63,7 +122,7 @@ function IncreaseLevel(more) {
 //Check if the game can start if there are images added
 function ShowStartBut() {
 
-    ShowComponent(startGame, curInputImageEvs.length > 1);
+    ShowComponent(startGame, curUsedImages.length > 1);
 }
 //create the grid based on the level of difficulty 
 function CreateGrid() {
@@ -117,9 +176,10 @@ function AddImageTo(theContainer, array) {
     }
     return nImage;
 }
+
 //Sets the images to the default background
 function SetImageToDefault(image) {
-    image.src = "images/back.png";
+    image.src = defaultImg;
 }
 //controls the visibility of the given component
 function ShowComponent(img, show) {
@@ -138,7 +198,7 @@ function StartGame() {
     ShowComponent(increaseLevel, false);
     ShowComponent(file, false);
 
-    imgIndex = 0;
+    let imgIndex = 0;
     generatedImages.length = [];
     usedIndex.length = [];
     generatedImages.length = total;
@@ -154,7 +214,7 @@ function StartGame() {
             random = Math.floor(Math.random() * total);
             if (usedIndex.includes(random) == false) {
                 usedIndex.push(random);
-                generatedImages[random] = curInputImageEvs[imgIndex];
+                generatedImages[random] = curUsedImages[imgIndex];
                 added++;
                 curTotal++;
                 if (added >= 2) {
@@ -168,7 +228,7 @@ function StartGame() {
         }
         imgIndex++;
 
-        if (imgIndex >= curInputImageEvs.length) {
+        if (imgIndex >= curUsedImages.length) {
             imgIndex = 0;
         }
         if (curTotal >= total) {
@@ -247,4 +307,13 @@ function SetImgToImg(img, src) {
     img.src = src;
     img.style.height = imageWidthPix;
     img.style.width = imageWidthPix;
+}
+//Adds a part object
+function AddObjTo(objType, theWidth, src, theParent) {
+    const nImage = document.createElement(objType);
+    nImage.style.width = theWidth;
+    nImage.style.margin = "auto";
+    nImage.src = src;
+    theParent.appendChild(nImage);
+    return nImage;
 }
