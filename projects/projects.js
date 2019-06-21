@@ -1,4 +1,4 @@
-import ObjectHandler from '../modules/componentsHandler.js/index.js';
+import ObjectHandler from '../modules/componentsHandler.js';
 // const objHandlerBase = require("./componentsHandler");
 // import ObjectHandler from "componentsHandler.js";
 const file = document.querySelector("#file");
@@ -26,7 +26,7 @@ const usedIndex = [];
 const curImages = [];
 const curInputImage = [];
 const curInputImageEvs = [];
-const curUsedImages = [];
+let curUsedImages = [];
 let selectedImgs = [-1, -1];
 let defaultImg = "../images/back.png";
 let gameStarted = false;
@@ -35,17 +35,23 @@ let curLevel = 2;
 let total;
 let wins;
 
-var imagesHandler = new ObjectHandler(onClickImageHandler, defaultImg, imageContainer, imageWidth, "img");
-var animas = [];
+const imagesHandler = new ObjectHandler(onClickImageHandler, defaultImg, imageContainer, imageWidth, "img");
+const animas = [];
+const food = []
+const monsters = []
 
-function AddAnimals(amount) {
+
+function BuildArrayOfPresets(path, theArray, amount) {
     for (let i = 0; i < amount; i++) {
-        animas.push("../images/presets/animals/animal_" + i + ".jpg");
+        theArray.push("../images/presets/" + path + i + ".jpg");
     }
 }
-AddAnimals(10);
 
-imagesHandler.ShowAllSrc(animas);
+BuildArrayOfPresets("animals/animal_", animas, 10);
+BuildArrayOfPresets("monsters/monster_", monsters, 10);
+BuildArrayOfPresets("plants/food_", food, 10);
+curUsedImages = monsters;
+imagesHandler.ShowAllSrc(curUsedImages);
 
 CreateGrid();
 //Called when ever you add images
@@ -56,14 +62,16 @@ function OnSelected() {
     }
     ShowStartBut();
     curUsedImages = curInputImageEvs;
+
+    imagesHandler.ShowAllSrc(curUsedImages);
 }
 //Creates a new image and display it in the input images container
 function CreateNewInputImage(e) {
-    let image = AddImageTo(imageContainer, curInputImage);
-    image.style.height = imageWidthPix;
-    image.style.width = imageWidthPix;
+    // let image = AddImageTo(imageContainer, curInputImage);
+    // image.style.height = imageWidthPix;
+    // image.style.width = imageWidthPix;
     var nImgData = URL.createObjectURL(e);
-    image.src = nImgData;
+    // image.src = nImgData;
 
     curInputImageEvs.push(nImgData);
 }

@@ -18,6 +18,7 @@ export default class ObjectHandler {
     }
     //Show the needed amount of images
     ShowImages(total) {
+        this.ShowCurImages(false);
         if (total <= this.curImages.length) {
             //show only the ones needed
             for (let i = 0; i < total; i++) {
