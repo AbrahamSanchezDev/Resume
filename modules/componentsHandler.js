@@ -1,4 +1,4 @@
-export class ObjectHandler {
+export default class ObjectHandler {
 
     curImages = [];
 
@@ -18,20 +18,20 @@ export class ObjectHandler {
     }
     //Show the needed amount of images
     ShowImages(total) {
-        if (total <= curImages.length) {
+        if (total <= this.curImages.length) {
             //show only the ones needed
             for (let i = 0; i < total; i++) {
-                ShowComponent(curImages[i], true);
+                this.ShowComponent(this.curImages[i], true);
 
             }
             return;
         }
         else {
             //Add more images
-            let needed = total - curImages.length;
-            ShowCurImages(true);
+            let needed = total - this.curImages.length;
+            this.ShowCurImages(true);
             for (let i = 0; i < needed; i++) {
-                AddImage();
+                this.AddImage();
             }
         }
     }
@@ -44,17 +44,23 @@ export class ObjectHandler {
     }
     //Adds an image to the curImages
     AddImage() {
-        var nImage = document.createElement(objType);
-        nImage.style.width = imageWidth;
+        var nImage = document.createElement(this.objType);
+        nImage.style.width = this.imageWidth;
         nImage.style.margin = "auto";
         nImage.src = this.defaultSrc;
-        container.appendChild(nImage);
-        curImages.push(nImage);
+        this.container.appendChild(nImage);
+        this.curImages.push(nImage);
         return nImage;
+    }
+    //shows or hides all images on the grid
+    ShowCurImages(show) {
+        this.curImages.forEach((img) => {
+            this.ShowComponent(img, show);
+        })
     }
     //Sets or Remove the listener to all the objects in the list
     SetAllListeners(add) {
-        curImages.forEach(img => {
+        this.curImages.forEach(img => {
             this.SetListeners(img, add);
         })
     }
@@ -62,7 +68,7 @@ export class ObjectHandler {
     SetListeners(img, add) {
         if (add) {
             img.onclick = () => {
-                const index = curImages.findIndex(im => im === img);
+                const index = this.curImages.findIndex(im => im === img);
                 this.onClick(index);
             };
         }
@@ -76,7 +82,7 @@ export class ObjectHandler {
     }
     //Set the src of the object to default
     SetSrcToDefault(index) {
-        this.curImages[index].src = defaultSrc;
+        this.curImages[index].src = this.defaultSrc;
     }
     //Sets the sre to the images at the given index
     SetSrcTo(index, src) {

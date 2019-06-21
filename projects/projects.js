@@ -1,6 +1,6 @@
-//import ObjectHandler from '../classes/componentsHandler';
-// const objHandlerBase = require("../classes/componentsHandler");
-// import ObjectHandler from "./componentsHandler";
+import ObjectHandler from '../modules/componentsHandler.js/index.js';
+// const objHandlerBase = require("./componentsHandler");
+// import ObjectHandler from "componentsHandler.js";
 const file = document.querySelector("#file");
 const imageContainer = document.querySelector(".output");
 const container = document.querySelector("#images");
@@ -9,11 +9,6 @@ const lowerLevel = document.querySelector("#lowerLevel");
 const increaseLevel = document.querySelector("#increaseLevel");
 const curLevelLabel = document.querySelector("#curLevel");
 const wonText = document.querySelector("#wonText");
-
-
-
-
-
 
 function onClickImageHandler(index) {
     console.log(index);
@@ -40,18 +35,17 @@ let curLevel = 2;
 let total;
 let wins;
 
-// var imagesHandler = new ObjectHandler(onClickImageHandler, defaultImg, container, imageWidth, "img");
-// var animas = [];
+var imagesHandler = new ObjectHandler(onClickImageHandler, defaultImg, imageContainer, imageWidth, "img");
+var animas = [];
 
-// function AddAnimals(amount) {
-//     for (let i = 0; i < amount; i++) {
-//         animas.push("../images/presets/animals/animal_" + i + ".jpg");
-//     }
-// }
-// AddAnimals(10);
+function AddAnimals(amount) {
+    for (let i = 0; i < amount; i++) {
+        animas.push("../images/presets/animals/animal_" + i + ".jpg");
+    }
+}
+AddAnimals(10);
 
-// imagesHandler.ShowAllSrc(animas);
-// imagesHandler.SetAllListeners(true);
+imagesHandler.ShowAllSrc(animas);
 
 CreateGrid();
 //Called when ever you add images
