@@ -14,6 +14,7 @@
 }	 
 body {
 	background-image: var(--bodyBg);
+	background-position-y: -160px;
 	font-family:  "San Francisco","Helvetica Neue",Helvetica,Arial;
 	line-height: 1.4em;
 	font-size: 14px;
